@@ -29,16 +29,16 @@ public abstract class Employee implements DataReader {
     private double grossSemiMonthly;
     private HomePage homePage;
     DecimalFormat df = new DecimalFormat("#,##0.00");
-    
-    public Employee(String employeeNo){ //Constructor for Login
+
+    public Employee(String employeeNo) { //Constructor for Login
         this.employeeNo = employeeNo;
     }
-    
+
     public Employee(String employeeNo, String employeeFN, String employeeLN, String employeeAddress,
-        String employeeDOB, String employeePhoneNumber, String employeeSSS, String employeePhilHealth,
-        String employeeTIN, String employeePagIbig, String employeeStatus, String employeePosition, 
-        String employeeSupervisor, double rice, double phone, double cloth, double hrRate) {
-        
+            String employeeDOB, String employeePhoneNumber, String employeeSSS, String employeePhilHealth,
+            String employeeTIN, String employeePagIbig, String employeeStatus, String employeePosition,
+            String employeeSupervisor, double rice, double phone, double cloth, double hrRate) {
+
         this.employeeNo = employeeNo;
         this.employeeFN = employeeFN;
         this.employeeLN = employeeLN;
@@ -126,19 +126,18 @@ public abstract class Employee implements DataReader {
     public double getHourlyRate() {
         return hrRate;
     }
-    
+
     public HomePage getHomePage() {
         return homePage;
     }
-    
+
     public double getBasicSalary() {
         return basicSalary;
     }
-    
-    public double getGrossSemiMonthly(){
+
+    public double getGrossSemiMonthly() {
         return grossSemiMonthly;
     }
-   
 
     //Setter Methods
     public void setEmployeeNo(String newEmployeeNo) {
@@ -160,67 +159,67 @@ public abstract class Employee implements DataReader {
     public void setEmployeeDOB(String newEmployeeDOB) {
         this.employeeDOB = newEmployeeDOB;
     }
-    
+
     public void setEmployeePhoneNumber(String newEmployeePhoneNumber) {
         this.employeePhoneNumber = newEmployeePhoneNumber;
     }
-    
+
     public void setEmployeeSSS(String newEmployeeSSS) {
         this.employeeSSS = newEmployeeSSS;
     }
-    
+
     public void setEmployeePhilHealth(String newEmployeePhilHealth) {
         this.employeePhilHealth = newEmployeePhilHealth;
     }
-    
+
     public void setEmployeeTIN(String newEmployeeTIN) {
         this.employeeTIN = newEmployeeTIN;
     }
-    
+
     public void setEmployeePagIbig(String newEmployeePagIbig) {
         this.employeePagIbig = newEmployeePagIbig;
     }
-    
+
     public void setEmployeeStatus(String newEmployeeStatus) {
         this.employeeStatus = newEmployeeStatus;
     }
-    
+
     public void setEmployeePosition(String newEmployeePosition) {
         this.employeePosition = newEmployeePosition;
     }
-    
+
     public void setEmployeeSupervisor(String newEmployeeSupervisor) {
         this.employeeSupervisor = newEmployeeSupervisor;
     }
-    
+
     public void setEmployeeRiceAllowance(double newEmployeeRiceAllowance) {
         this.rice = newEmployeeRiceAllowance;
     }
-    
+
     public void setEmployeePhoneAllowance(double newEmployeePhoneAllowance) {
         this.phone = newEmployeePhoneAllowance;
     }
-    
+
     public void setEmployeeClothAllowance(double newEmployeeClothAllowance) {
         this.cloth = newEmployeeClothAllowance;
     }
-    
+
     public void setHourlyRate(double newHourlyRate) {
         this.hrRate = newHourlyRate;
     }
-    
+
     public void setHomePage(HomePage newHomePage) {
         this.homePage = newHomePage;
     }
-    
-    public void setBasicSalary(double newBasicSalary){
+
+    public void setBasicSalary(double newBasicSalary) {
         this.basicSalary = newBasicSalary;
     }
-    
-    public void setGrossSemiMonthly(double newGrossSemiMonthly){
+
+    public void setGrossSemiMonthly(double newGrossSemiMonthly) {
         this.grossSemiMonthly = newGrossSemiMonthly;
     }
-    
+
     // Factory Method: Creates an Employee object based on accessType
     public static Employee createEmployeeInstance(String empNo) throws IOException, CsvValidationException {
         String filename = "Credentials.csv";
@@ -231,17 +230,21 @@ public abstract class Employee implements DataReader {
             while ((employeeData = reader.readNext()) != null) {
                 if (employeeData[0].equals(empNo)) {
                     return switch (employeeData[3]) {
-                        case "Admin" -> new Admin(empNo);
-                        case "Manager" -> new Manager(empNo);
-                        case "Regular" -> new RegularEmployee(empNo);
-                        default -> throw new IllegalArgumentException("Invalid access type: " + employeeData[3]);
+                        case "Admin" ->
+                            new Admin(empNo);
+                        case "Manager" ->
+                            new Manager(empNo);
+                        case "Regular" ->
+                            new RegularEmployee(empNo);
+                        default ->
+                            throw new IllegalArgumentException("Invalid access type: " + employeeData[3]);
                     };
                 }
             }
         }
         return null;
     }
-    
+
     @Override
     public boolean readData(String empNo, String... params) throws IOException, CsvValidationException {
         boolean empFound = false;
@@ -278,9 +281,12 @@ public abstract class Employee implements DataReader {
         }
         return empFound;
     }
-    
+
     public abstract void accessPermissions(HomePage homePage);
+
     public abstract void viewEmployeeDetails();
+
     public abstract void processLeaveRequest();
+
     public abstract void viewSalary();
 }

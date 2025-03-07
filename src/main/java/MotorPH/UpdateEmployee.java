@@ -353,10 +353,10 @@ public class UpdateEmployee extends javax.swing.JFrame {
             }
             writer.writeAll(csvData);
         }
-        // Ensure that the file handles are closed properly   
+        // Ensure that the file handles are closed properly
         Files.move(tempFile.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField empAdd;
     private javax.swing.JTextField empDOB;

@@ -13,7 +13,7 @@ public class RegularEmployee extends Employee implements DataReader {
     public RegularEmployee() {
         super("", "", "", "", "", "", "", "", "", "", "", "", "", 0, 0, 0, 0);
     }
-    
+
     // For login
     public RegularEmployee(String employeeNo) {
         super(employeeNo);

@@ -92,7 +92,6 @@ public class HomePage extends javax.swing.JFrame {
         requestLeaveBtn = new JButton("Request Leave"); //Regular Employee
 
         //Button action listeners
-        
         //Admin
         addUpdateDeleteBtn.addActionListener(e -> {
             if (currentUser instanceof Admin admin) {

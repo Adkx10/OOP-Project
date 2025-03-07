@@ -37,9 +37,9 @@ public class ViewRequest extends javax.swing.JFrame implements DataReader {
         showDate();
 
         try {
-            if(currentUser instanceof Admin || currentUser instanceof Manager){
-            readData(null, (String) null);
-            } else if (currentUser instanceof RegularEmployee){
+            if (currentUser instanceof Admin || currentUser instanceof Manager) {
+                readData(null, (String) null);
+            } else if (currentUser instanceof RegularEmployee) {
                 readData(empNo, (String) null);
             }
         } catch (CsvValidationException ex) {

@@ -13,7 +13,7 @@ public class Manager extends Employee implements DataReader {
     public Manager() {
         super("", "", "", "", "", "", "", "", "", "", "", "", "", 0, 0, 0, 0);
     }
-    
+
     // For login
     public Manager(String employeeNo) {
         super(employeeNo);

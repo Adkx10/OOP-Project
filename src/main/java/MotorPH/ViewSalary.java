@@ -254,9 +254,8 @@ public class ViewSalary extends javax.swing.JFrame {
                     return;
                 }
             }
-            
+
             // Admin has full access, so no restriction is needed.
-            
             // Catch an invalid input of employee number
             if (data == null) {
                 JOptionPane.showMessageDialog(this, "Employee not found!", "Search Result", JOptionPane.WARNING_MESSAGE);
@@ -277,14 +276,14 @@ public class ViewSalary extends javax.swing.JFrame {
 
             // Verify if employee exists before proceeding
             if (!data.readData(enteredEmpNo)) {
-                JOptionPane.showMessageDialog(this, "Employee not found!","Search Result", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Employee not found!", "Search Result", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             // Calculate Salary
             double allowances = data.getRiceAllowance() + data.getPhoneAllowance() + data.getClothAllowance();
             double baseSalary = (data.getHourlyRate() * attend.FinalHW()) + allowances;
-            
+
             // Deduct Contributions
             Deduct govt = new Deduct(baseSalary);
             ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -297,7 +296,7 @@ public class ViewSalary extends javax.swing.JFrame {
             String deductOutput = output.toString();
 
             DecimalFormat df = new DecimalFormat("#,##0.00");
-            
+
             // Display Salary Details
             if (attend.FinalHW() != 0) {
                 salaryInfoText.append("Employee No.: ").append(data.getEmployeeNo()).append("\n");
@@ -332,7 +331,7 @@ public class ViewSalary extends javax.swing.JFrame {
         try {
             // Get the value entered by the user for employee number
             this.empNo = employeeNo.getText();
-            
+
             if (empNo.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please enter an employee number.",
                         "Invalid Input", JOptionPane.WARNING_MESSAGE);
@@ -341,7 +340,7 @@ public class ViewSalary extends javax.swing.JFrame {
 
             // Initialize instance of 'Employee' class
             Employee data = Employee.createEmployeeInstance(empNo);
-            
+
             if (currentUser instanceof Manager manager) {
                 if (data instanceof Manager && !empNo.equals(manager.getEmployeeNo())) {
                     JOptionPane.showMessageDialog(this, "Access Denied! You cannot view other managers' salaries.",
@@ -354,7 +353,7 @@ public class ViewSalary extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Employee not found!", "Search Result", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            
+
             StringBuilder infoText = new StringBuilder();
 
             // Set the employee number in the 'Employee' object
@@ -371,15 +370,15 @@ public class ViewSalary extends javax.swing.JFrame {
             System.out.flush();
             System.setOut(old);
 
-                // Construct the salary information
-                infoText.append("Employee No.: ").append(data.getEmployeeNo()).append("\n\n");
-                infoText.append("Employee Name: ").append(data.getEmployeeFN()).append(" ").append(data.getEmployeeLN()).append("\n\n");
-                infoText.append("Basic Salary: ").append(data.getBasicSalary()).append("\n\n");
-                infoText.append("Rice Subsidy: ").append(data.getRiceAllowance()).append("\n\n");
-                infoText.append("Phone Allowance: ").append(data.getPhoneAllowance()).append("\n\n");
-                infoText.append("Clothing Allowance: ").append(data.getClothAllowance()).append("\n\n");
-                infoText.append("Gross Semi-monthly Rate: ").append(data.getGrossSemiMonthly()).append("\n\n");
-                infoText.append("Hourly Rate: ").append(data.getHourlyRate()).append("\n\n");
+            // Construct the salary information
+            infoText.append("Employee No.: ").append(data.getEmployeeNo()).append("\n\n");
+            infoText.append("Employee Name: ").append(data.getEmployeeFN()).append(" ").append(data.getEmployeeLN()).append("\n\n");
+            infoText.append("Basic Salary: ").append(data.getBasicSalary()).append("\n\n");
+            infoText.append("Rice Subsidy: ").append(data.getRiceAllowance()).append("\n\n");
+            infoText.append("Phone Allowance: ").append(data.getPhoneAllowance()).append("\n\n");
+            infoText.append("Clothing Allowance: ").append(data.getClothAllowance()).append("\n\n");
+            infoText.append("Gross Semi-monthly Rate: ").append(data.getGrossSemiMonthly()).append("\n\n");
+            infoText.append("Hourly Rate: ").append(data.getHourlyRate()).append("\n\n");
             showData.setText(infoText.toString());
         } catch (CsvValidationException | IOException ex) {
             ex.printStackTrace();

@@ -35,12 +35,12 @@ public class EmployeeData extends javax.swing.JFrame implements DataReader {
         this.empNo = (currentUser != null) ? currentUser.getEmployeeNo() : null;
         initComponents();
         showDate();
-        
+
         //This displays the entire table for Admin and Manager, while Regular Employees can only see their own information.
         try {
-            if(currentUser instanceof Admin || currentUser instanceof Manager){
-            readData(null);
-            } else if (currentUser instanceof RegularEmployee){
+            if (currentUser instanceof Admin || currentUser instanceof Manager) {
+                readData(null);
+            } else if (currentUser instanceof RegularEmployee) {
                 readData(empNo);
             }
         } catch (CsvValidationException ex) {
@@ -66,27 +66,27 @@ public class EmployeeData extends javax.swing.JFrame implements DataReader {
                 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 jTable1.setAutoCreateRowSorter(true);
-                
+
                 // Read and add data rows
                 String[] nextLine;
                 while ((nextLine = reader.readNext()) != null) {
                     if (currentUser instanceof Admin || currentUser instanceof Manager) {
-                    // Admin & Manager: Show all employee details
-                    if ((empNo == null || empNo.isEmpty() || nextLine[0].equals(empNo))){
-                        model.addRow(nextLine);
-                        empFound = true;  
-                    }
-                } else if (currentUser instanceof RegularEmployee) {
-                    // Regular Employee: Show only their own details
-                    if (nextLine.length > 0 && nextLine[0].equals(empNo)) {
-                        model.addRow(nextLine);
-                        empFound = true;
-                        break; // Exit loop early since only one record is relevant
+                        // Admin & Manager: Show all employee details
+                        if ((empNo == null || empNo.isEmpty() || nextLine[0].equals(empNo))) {
+                            model.addRow(nextLine);
+                            empFound = true;
+                        }
+                    } else if (currentUser instanceof RegularEmployee) {
+                        // Regular Employee: Show only their own details
+                        if (nextLine.length > 0 && nextLine[0].equals(empNo)) {
+                            model.addRow(nextLine);
+                            empFound = true;
+                            break; // Exit loop early since only one record is relevant
+                        }
                     }
                 }
+                model.fireTableDataChanged(); // Refresh the table UI
             }
-            model.fireTableDataChanged(); // Refresh the table UI
-        }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -344,13 +344,13 @@ public class EmployeeData extends javax.swing.JFrame implements DataReader {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         this.empNo = employeeNo.getText();
-            try {
-                if (!readData(this.empNo.isEmpty() ? null : this.empNo)) {
-                    JOptionPane.showMessageDialog(this, "Employee not found!", "Search Result", JOptionPane.WARNING_MESSAGE);
-                }
-            } catch (CsvValidationException | IOException ex) {
-                Logger.getLogger(EmployeeData.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            if (!readData(this.empNo.isEmpty() ? null : this.empNo)) {
+                JOptionPane.showMessageDialog(this, "Employee not found!", "Search Result", JOptionPane.WARNING_MESSAGE);
             }
+        } catch (CsvValidationException | IOException ex) {
+            Logger.getLogger(EmployeeData.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -359,7 +359,6 @@ public class EmployeeData extends javax.swing.JFrame implements DataReader {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
         String empDelete = employeeNo.getText();
         boolean empFound = false; //Flag to track if the employee number is found
 

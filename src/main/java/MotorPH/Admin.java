@@ -31,43 +31,6 @@ public class Admin extends Employee implements DataReader {
 
     }
 
-    /*@Override
-    public boolean readEmployee(String search) throws FileNotFoundException, IOException, CsvValidationException {
-        boolean empFound = false;
-        String filename = "Employee Data.csv";
-        try (CSVReader reader = new CSVReader(new FileReader(filename))) {
-            String[] headers = reader.readNext();
-            String[] employeeData;
-            while ((employeeData = reader.readNext()) != null) {
-                if (employeeData[0].equals(search)) {
-                    this.setEmployeeNo(employeeData[0]);
-                    this.setEmployeeLN(employeeData[1]);
-                    this.setEmployeeFN(employeeData[2]);
-                    this.setEmployeeDOB(employeeData[3]);
-                    this.setEmployeeAddress(employeeData[4]);
-                    this.setEmployeePhoneNumber(employeeData[5]);
-                    this.setEmployeeSSS(employeeData[6]);
-                    this.setEmployeePhilHealth(employeeData[7]);
-                    this.setEmployeeTIN(employeeData[8]);
-                    this.setEmployeePagIbig(employeeData[9]);
-                    this.setEmployeeStatus(employeeData[10]);
-                    this.setEmployeePosition(employeeData[11]);
-                    this.setEmployeeSupervisor(employeeData[12]);
-                    this.setEmployeeRiceAllowance(Double.parseDouble(employeeData[14]));
-                    this.setEmployeePhoneAllowance(Double.parseDouble(employeeData[15]));
-                    this.setEmployeeClothAllowance(Double.parseDouble(employeeData[16]));
-                    this.setHourlyRate(Double.parseDouble(employeeData[18]));
-                    this.setBasicSalary(Double.parseDouble(employeeData[13]));
-                    this.setGrossSemiMonthly(Double.parseDouble(employeeData[17]));
-
-                    empFound = true;
-                    break;
-                }
-            }
-        }
-        return empFound;
-    }*/
-
     @Override
     public void accessPermissions(HomePage homePage) {
         homePage.addButton(homePage.getAddUpdateDeleteBtn());
@@ -141,7 +104,7 @@ public class Admin extends Employee implements DataReader {
 
 }
 
-    /*@Override
+/*@Override
     public boolean readEmployee(String search) throws FileNotFoundException, IOException, CsvValidationException {
         boolean empFound = false;
         String filename = "Employee Data.csv";
