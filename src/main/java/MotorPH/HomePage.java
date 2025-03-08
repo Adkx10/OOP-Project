@@ -224,11 +224,12 @@ public class HomePage extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(150, 100));
         jPanel1.setLayout(null);
 
-        label1.setBackground(new java.awt.Color(242, 242, 242));
+        label1.setBackground(new java.awt.Color(0, 102, 255));
+        label1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label1.setName(""); // NOI18N
         label1.setText("Employee ID: " + currentUser.getEmployeeNo());
-        label1.setVisible(false);
+        label1.setVisible(true);
         jPanel1.add(label1);
         label1.setBounds(20, 70, 170, 20);
 
